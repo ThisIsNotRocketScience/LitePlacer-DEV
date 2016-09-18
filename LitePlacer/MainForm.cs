@@ -27,12 +27,12 @@ using System.Net;
 using MathNet.Numerics;
 using HomographyEstimation;
 
-using AForge;
-using AForge.Video;
-using AForge.Video.DirectShow;
-using AForge.Imaging;
-using AForge.Imaging.Filters;
-using AForge.Math.Geometry;
+using Accord;
+using Accord.Video;
+using Accord.Video.DirectShow;
+using Accord.Imaging;
+using Accord.Imaging.Filters;
+using Accord.Math.Geometry;
 
 
 namespace LitePlacer
@@ -11244,7 +11244,7 @@ namespace LitePlacer
                 (DataGridViewComboBoxColumn)Grid.Columns[(int)Display_dataGridViewColumns.Function];
             comboboxColumn.Items.Clear();
             comboboxColumn.Items.AddRange("Threshold", "Histogram", "Grayscale", "Invert", "Edge detect",
-                "Noise reduction", "Kill color", "Keep color", "Blur", "Gaussian blur", "Meas. zoom");
+                "Noise reduction", "Kill color", "Keep color", "Blur", "Gaussian blur", "Meas. zoom", "Erode", "Dilate");
         }
 
         private void SetEditTargets()
@@ -11388,6 +11388,21 @@ namespace LitePlacer
                     UpdateDisplayFunctions();
                     break;
 
+                case "Dilate":
+                case "Erode":
+                    // one int parameter
+                    ClearParameterValuesExcept(row, 2);
+
+                    if (Display_dataGridView.Rows[row].Cells[IntCol].Value == null)
+                    {
+                        Parameter_Int_numericUpDown.Value = 1;
+                        Display_dataGridView.Rows[row].Cells[IntCol].Value = "1";
+                    }
+
+                    Parameter_Int_numericUpDown.Enabled = true;
+                    Parameter_int_label.Text = "# of reps (1..10)";
+                    UpdateDisplayFunctions();
+                    break;
                 case "Threshold":
                     // one int parameter
                     ClearParameterValuesExcept(row, 2);
