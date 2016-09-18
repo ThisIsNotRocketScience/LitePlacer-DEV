@@ -50,6 +50,14 @@ namespace LitePlacer
 			VideoSource.Stop();
 		}
 
+        public void ShowConfig()
+        {
+           if (VideoSource!= null)
+            {
+                VideoSource.DisplayPropertyPage((IntPtr)0);
+            }
+        }
+
 		public void Close()
 		{
 			if (!(VideoSource == null))
@@ -877,11 +885,12 @@ namespace LitePlacer
             Dilatation filter = new Dilatation();
             //Blur filter = new Blur();
             // apply the filter
+            
             for (int i = 0; i < par_int; i++)
             {
                 filter.ApplyInPlace(frame);
             }
-        }
+        }   
 
         // =========================================================
         private void ErodeFunct(ref Bitmap frame, int par_int, double par_d, int par_R, int par_G, int par_B)

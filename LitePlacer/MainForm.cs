@@ -2414,7 +2414,15 @@ namespace LitePlacer
             }
         }
 
+        private void ConfigureDownWebcam_Click(object sender, EventArgs e)
+        {
+            DownCamera.ShowConfig();
+        }
 
+        private void UpWebcamConfigure_Click(object sender, EventArgs e)
+        {
+            UpCamera.ShowConfig();
+        }
         // =================================================================================
         private bool StartDownCamera_m()
         {
@@ -11806,7 +11814,7 @@ namespace LitePlacer
             }
         }
 
-    
+        
     }	// end of: 	public partial class FormMain : Form
 
 
